@@ -6,7 +6,7 @@
 #     print(e)
 # finally:
 #     f.close()
-#这里会自动执行关闭流，但是我想打印日志
+# 这里会自动执行关闭流，但是我想打印日志
 # with open("IODemo.iml", "r") as f:
 #     print(f.read())
 # try:
@@ -35,16 +35,43 @@
 #         #     print(line.strip())
 # except Exception as e:
 #     print(e)
-def readFile(path):
+##读取置顶字节长度的文件
+# def readFileWithSize(path):
+#     try:
+#         with open(path, "r") as f:
+#             while True:
+#                 readDetail = f.read(5)
+#                 print(readDetail)
+#                 if not readDetail:
+#                     break
+#             return True,
+#     except FileNotFoundError as e:
+#         return False, e
+#     except Exception as e:
+#         return False, e
+def readFile(filePath):
     try:
-        with open(path,"r") as f:
-            print(f.__exit__())
+        with open(filePath, "r",encoding='UTF-8',errors="ignored") as f:
+            backList = f.readlines()
+        return True, backList
     except FileNotFoundError as e:
-        return False,e
+        return False, e
+    except Exception as e:
+        return False, e
 
-print(readFile("测试文件"))
+def writeFile(outPath,srcPath):
+    try:
+        with open(outPath, "w",encoding='UTF-8',errors="ignored") as f:
+            flag,list=readFile(srcPath)
+            if flag:
+                for line in list:
+                    f.write(line)
+                return True, "复制结束"
+            return False,"未知错误》》》"
+    except FileNotFoundError as e:
+        return False, e
+    except Exception as e:
+        return False, e
 
 
-
-
-
+print(writeFile("IODemo.txt","IODemo.iml"))
