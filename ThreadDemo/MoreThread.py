@@ -6,7 +6,7 @@ import os.path
 import os
 
 logging.basicConfig(level=logging.INFO)
-READ_FILE_SIZE = 1024
+READ_FILE_SIZE = 4
 thread_loacl = threading.local()
 
 
@@ -40,20 +40,9 @@ def thread_read_file(thread_count_index):
     read_file_from = (thread_count_index - 1) * READ_FILE_SIZE
     readFile = open("IODemo.txt", "rb")
     readFile.seek(read_file_from, 1)
-    #readFile.read(READ_FILE_SIZE)
+    print(readFile.read(READ_FILE_SIZE))
     print(threading.current_thread().getName() + "读取结束。。。")
-    writeFile = open("IODemo(1).txt", "wb")
-    print(threading.current_thread().getName() + "正在复制。。。")
-    note=readFile.read(READ_FILE_SIZE)
-    print(note)
-    writeFile.write(note)
-    print(threading.current_thread().getName() + "复制结束。。。")
     readFile.close()
-    writeFile.close()
-
-
-
-
 
 
 def more_thread_io():
