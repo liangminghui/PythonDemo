@@ -11,7 +11,7 @@ app.config.update(DEBUG=True)
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return '<h1>Home11</home>'
+    return '<h1>Home</home>'
 
 
 @app.route('/signin', methods=['GET'])
