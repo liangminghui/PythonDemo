@@ -15,10 +15,22 @@ text = '123'  # 待加密文本
 
 aes = AES.new(add_to_16(key), AES.MODE_ECB)  # 初始化加密器
 
-encrypted_text = str(base64.encodebytes(aes.encrypt(add_to_16(text))), encoding='utf8').replace('\n', '')  # 加密
-
-text_decrypted = str(aes.decrypt(base64.decodebytes(bytes(encrypted_text, encoding='utf8'))).rstrip(b'\0').decode("utf8"))  # 解密
-
-print('加密值：', encrypted_text)
-
-print('解密值：', text_decrypted)
+# encrypted_text = str(base64.encodebytes(aes.encrypt(add_to_16(text))), encoding='utf8').replace('\n', '')  # 加密
+#
+# text_decrypted = str(aes.decrypt(base64.decodebytes(bytes(encrypted_text, encoding='utf8'))).rstrip(b'\0').decode("utf8"))  # 解密
+#
+# print('加密值：', encrypted_text)
+#
+# print('解密值：', text_decrypted)
+def encrypted(encryText):
+    return str(base64.encodebytes(aes.encrypt(add_to_16(encryText))), encoding='utf8').replace('\n', '')  # 加密
+def decrypted(decryText):
+    return str(base64.encodebytes(aes.encrypt(add_to_16(decryText))), encoding='utf8').replace('\n', '')  # 加密
+# #5LKH9UXHiCx45rAXcjM/dw==
+# import sqlite3
+# conn=sqlite3.connect("../DBDemo/test.db")
+# cursor=conn.cursor()
+# print(cursor.execute("select * from user").fetchall())
+# cursor.close()
+# conn.commit()
+# conn.close()
