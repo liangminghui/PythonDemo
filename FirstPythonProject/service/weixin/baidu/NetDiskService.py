@@ -8,7 +8,7 @@ from constant import Result
 def save_url(param):
     # NetDisk.parse_url()
 
-    result = Result.Result.__init__("200", "调用成功")
+    result = Result.JsonResult("200", "调用成功")
     return result
 
 

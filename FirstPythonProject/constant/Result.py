@@ -4,22 +4,22 @@
 import json
 
 
-class Result(object):
+class JsonResult(object):
     def __init__(self, code, msg, dictionary, data):
-        self.code = code,
-        self.msg = msg,
-        self.dictionary = dictionary,
-        self.data = data,
+        self.code = code
+        self.msg = msg
+        self.dictionary = dictionary
+        self.data = data
 
     def __init__(self, code, msg):
-        self.code = code,
-        self.msg = msg,
+        self.code = code
+        self.msg = msg
 
 
 def obj_2_json_simple(obj):
     return {
         "code": obj.code,
-        "msg": obj.msg,
+        "msg": obj.msg
     }
 
 
@@ -27,7 +27,7 @@ def obj_2_json_with_data(obj):
     return {
         "code": obj.code,
         "msg": obj.msg,
-        "data": obj.data,
+        "data": obj.data
     }
 
 
