@@ -5,15 +5,17 @@ import json
 
 
 class JsonResult(object):
-    def __init__(self, code, msg, dictionary, data):
+    def __init__(self, code, msg, flag, dictionary, data):
         self.code = code
         self.msg = msg
+        self.flag = flag
         self.dictionary = dictionary
         self.data = data
 
-    def __init__(self, code, msg):
+    def __init__(self, code, msg, flag):
         self.code = code
         self.msg = msg
+        self.flag = flag
 
 
 def obj_2_json_simple(obj):

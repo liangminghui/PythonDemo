@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import re
+from util.common import log
 # 百度网盘相关功能
+log = log.LoggerUtil()
+
+
 # 解析分享的url
-
-
 def parse_url(share_url):
-    print(share_url)
-    return "测试"
+    share_url_list = re.findall('链接: (.*)? 复制', share_url)
+    print(share_url_list.__len__())
+    log.info("解析到条数据,内容如下>>>>")
+    for share_url_index in share_url_list:
+        log.info(share_url_index)
+    return share_url_list
 
