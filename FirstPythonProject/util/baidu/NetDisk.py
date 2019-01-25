@@ -9,8 +9,7 @@ log = log.LoggerUtil()
 # 解析分享的url
 def parse_url(share_url):
     share_url_list = re.findall('链接: (.*)? 复制', share_url)
-    print(share_url_list.__len__())
-    log.info("解析到条数据,内容如下>>>>")
+    log.info("解析到%d条数据,内容如下>>>>"%(share_url_list.__len__()))
     for share_url_index in share_url_list:
         log.info(share_url_index)
     return share_url_list
