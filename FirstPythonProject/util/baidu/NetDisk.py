@@ -14,3 +14,13 @@ def parse_url(share_url):
         log.info(share_url_index)
     return share_url_list
 
+
+# 保存分析的url
+def save_url(single_share_url):
+    # 截取出路径和提取码
+    url, key = single_share_url.split(" 提取码: ")
+
+    pass
+
+save_url("https://pan.baidu.com/s/19UuXX-Q81NWdhMZ8Za2HGw 提取码: hwjd")
+
