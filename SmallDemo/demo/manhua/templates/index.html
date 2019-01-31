@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+        .inline_div {
+            float: left;
+            width: 30%;
+            height: 400px;
+            margin-top: 390px;
+
+        }
+        .inline_div_mid {
+            float: left;
+            width: 40%;
+            height: 400px;
+        }
+    </style>
+    <script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        // function ajaxLoad(index) {
+        //     alert(index);
+        // }
+        $(function(){
+            $(".inline_div button").click(function () {
+                var index = $(this).attr("v");
+                var data = {
+                    index:index
+                }
+                $.ajax({
+                    url:'/ajaxLoad',
+                    type:'POST',
+                    data:JSON.stringify(data),
+                    dataType: 'json',
+                    success:function(result){
+                        if(result.code==200){
+                            console.log(result);
+                            $(".inline_div_mid img").attr("src","http://res.img.pufei.net/2017/02/08/18/4403f7d4b8.jpg");
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+    <div style="width: 100%">
+        <div class="inline_div">
+            <button v="1">上一章</button>
+            <button v="2">上一页</button>
+        </div>
+        <div class="inline_div_mid">
+            <img src="" title="暂无图片">
+        </div>
+        <div class="inline_div">
+            <button v="3">下一页</button>
+            <button v="4">下一章</button>
+        </div>
+    </div>
+</body>
+</html>
