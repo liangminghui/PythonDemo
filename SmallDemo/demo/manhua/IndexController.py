@@ -4,16 +4,33 @@
 from flask import Flask,render_template,jsonify,request
 import json
 from demo.manhua.common import log
+import sqlite3
 log = log.LoggerUtil()
 app = Flask(__name__)
 
 
+def get_connect():
+    return sqlite3.connect("common/database.db")
+
+
+def close_connect(cursor, connect):
+    cursor.close()
+    connect.commit()
+    connect.close()
+
+
 @app.route("/", methods=["GET", "POST"])
 def index_url():
-    return render_template("index.html")
+    connect = get_connect()
+    cursor = connect.cursor()
+    comic_info_list = []
+    for db_msg in cursor.execute("select href,title from comic_info order by id").fetchall():
+        comic_info_list.append({"href":db_msg[0],"title":db_msg[1]})
+    close_connect(cursor, connect)
+    return render_template("index.html", comic_info_list=comic_info_list)
 
 
-@app.route("/ajaxLoad", methods=["POST"])
+@app.route("/read/ajaxLoad", methods=["POST"])
 def ajaxLoad():
     data = json.loads(request.get_data())
     index = data['index']

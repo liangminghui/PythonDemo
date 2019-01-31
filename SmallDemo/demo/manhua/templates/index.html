@@ -3,59 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-    <style>
-        .inline_div {
+    <style type="text/css">
+        li{
+            list-style: none;
             float: left;
             width: 30%;
-            height: 400px;
-            margin-top: 390px;
-
-        }
-        .inline_div_mid {
-            float: left;
-            width: 40%;
-            height: 400px;
+            border: solid 1px black;
+            white-space: nowrap;
+            overflow: hidden;
+            min-width:30px;
         }
     </style>
     <script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
-        // function ajaxLoad(index) {
-        //     alert(index);
-        // }
         $(function(){
-            $(".inline_div button").click(function () {
-                var index = $(this).attr("v");
-                var data = {
-                    index:index
-                }
-                $.ajax({
-                    url:'/ajaxLoad',
-                    type:'POST',
-                    data:JSON.stringify(data),
-                    dataType: 'json',
-                    success:function(result){
-                        if(result.code==200){
-                            console.log(result);
-                            $(".inline_div_mid img").attr("src","http://res.img.pufei.net/2017/02/08/18/4403f7d4b8.jpg");
-                        }
-                    }
-                })
+            $(".load_ul li").click(function(){
+                window.location.href="http://m.pufei.net/"+$(this).attr("href");
             });
         });
     </script>
 </head>
     <div style="width: 100%">
-        <div class="inline_div">
-            <button v="1">上一章</button>
-            <button v="2">上一页</button>
-        </div>
-        <div class="inline_div_mid">
-            <img src="" title="暂无图片">
-        </div>
-        <div class="inline_div">
-            <button v="3">下一页</button>
-            <button v="4">下一章</button>
-        </div>
+
+        <ul class="load_ul">
+            {% for comic_info in comic_info_list%}
+            <li title={{comic_info["title"]}} href={{comic_info["href"]}}>
+                {{comic_info["title"]}}
+            </li>
+            {% endfor%}
+        </ul>
     </div>
 </body>
 </html>
