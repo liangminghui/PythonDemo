@@ -47,6 +47,7 @@ def target_function3():
     finally:
         lock.release()
 
+
 '''
    控制数数据库连接上数
    maxconnections = 5
@@ -57,6 +58,8 @@ def target_function3():
    conn.close()
    pool_sema.release()
  '''
+
+
 def main():
     lock = threading.Lock()
     print(threading.current_thread())
@@ -69,12 +72,10 @@ def main():
         t1.start()
         t2.start()
         t3.start()
-
     time.sleep(10)
     print(count1)
     print(count2)
     print(count3)
-
 
 
 if __name__ == '__main__':
